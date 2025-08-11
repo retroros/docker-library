@@ -2,7 +2,11 @@
 
 # consider changing this up to use docker multiplatform builds
 # see how the process was done with ev3dev-docker-cross
-FROM arm32v5/debian:bookworm
+#FROM arm32v5/debian:bookworm
+FROM debian:bookworm
+
+# Configure build arguments
+ARG XZ_DEFAULTS="-T0"
 
 # Enable additional software source
 # Shouldn't be needed with updated debian.source file
