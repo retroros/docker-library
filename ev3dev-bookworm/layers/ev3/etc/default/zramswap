@@ -1,0 +1,4 @@
+ALGO=lz4             # Use lz4 compression (fast)
+#ALGO=zstd LEVEL=-6  # Use zstd with fast compression profile
+PERCENT=0            # Disable size based on percentage of RAM
+SIZE=96M             # Fixed size of 96 MB

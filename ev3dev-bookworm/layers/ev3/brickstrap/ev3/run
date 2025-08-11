@@ -13,7 +13,7 @@ apt-get install --yes --no-install-recommends \
     firmware-ti-connectivity \
     linux-image-ev3dev-ev3 \
     u-boot-tools \
-    zram-init
+    zram-tools
 
 # make sure serial-getty@.service does not try to use the serial ports because
 # we use them for other things
@@ -24,7 +24,9 @@ systemctl mask serial-getty@ttySU0.service
 systemctl mask serial-getty@ttySU1.service
 
 # enable zram swap file
-systemctl enable zram_swap.service
+systemctl enable zramswap.service
+systemctl reload zramswap.service
+systemctl restart zramswap.service
 
 # Fix file permissions on private ssh host keys. (git does not preserve
 # permissions other than the executable bit)
