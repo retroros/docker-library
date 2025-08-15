@@ -17,6 +17,8 @@ RUN apt-get update ; apt-get upgrade -y
 # Provision ev3dev layers
 COPY layers/debian/ /
 COPY layers/base/ /
+#RUN --mount=type=tmpfs,target=/build /brickstrap/base/run
 RUN /brickstrap/base/run
 COPY layers/ev3/ /
+#RUN --mount=type=tmpfs,target=/build /brickstrap/ev3/run
 RUN /brickstrap/ev3/run
