@@ -13,9 +13,30 @@ locales         locales/default_environment_locale      select          en_US.UT
 EOF
 
 
-#apt-get update --yes
-#apt-get install --yes --no-install-recommends \
-#	git
+apt-get update --yes
+apt-get install --yes --no-install-recommends \
+  cmake \
+  debhelper \
+	git \
+	gir1.2-glib-2.0 \
+	gobject-introspection \
+	gtk-doc-tools \
+	libfontconfig1-dev \
+	libfreetype6-dev \
+	libgirepository1.0-dev \
+	libglib2.0-dev \
+	libglib2.0-doc \
+	libgtk-3-dev \
+	libgudev-1.0-dev \
+	libinput-dev \
+	libjpeg-dev \
+	libpng-dev \
+	libudev-dev \
+	libxkbcommon-dev \
+	pandoc \
+	pkg-config \
+	valac \
+	valadoc
 
 # Build packages from source
 # Probably update the dockerfile to create a tmpfs mount
@@ -37,12 +58,14 @@ PCKG_SOURCE["https://github.com/retroros/ev3dev-bluez-config.git"]="ev3dev-jessi
 PCKG_SOURCE["https://github.com/retroros/ev3dev-connman-config.git"]="ev3dev-buster"
 PCKG_SOURCE["https://github.com/retroros/ev3dev-adduser-config.git"]="ev3dev-jessie"
 
+# Used to maintain package order as hashtable lookup alone will not install all packages in order
 RETROROS_PKGS=( "grx" "grx-widgets" "console-runner" "brickd" "brickrun"
                 "ev3devKit" "brickman" "ev3dev-base-files" "ev3dev-rules"
                 "ev3dev-tools" "ev3dev-bluez-config" "ev3dev-connman-config"
                 "ev3dev-adduser-config" )
 BUILDDIR="/build"
 mkdir -p "$BUILDDIR"
+rm -rf "$BUILDDIR"/* # Cleanup if we're running multiple times manually
 pushd "$BUILDDIR"
 for PKG in "${RETROROS_PKGS[@]}" ; do
 	PKG_URL="https://github.com/retroros/${PKG}.git"
@@ -57,10 +80,11 @@ for PKG in "${RETROROS_PKGS[@]}" ; do
 		apt install --yes $(find "${BUILDDIR}" -maxdepth 1 -type f -iname '*.deb') # Include optional debug symbols
 	fi
 	cd "$BUILDDIR"
-	#rm -rf "$BUILDDIR/*"
 	rm -rf "$BUILDDIR/src"
 done
 popd
+# Cleanup
+rm -rf "$BUILDDIR"
 
 # Extra languages to consider installing
 # https://www.ev3dev.org/docs/programming-languages/
