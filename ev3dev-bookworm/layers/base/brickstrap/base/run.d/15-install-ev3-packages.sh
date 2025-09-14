@@ -59,10 +59,10 @@ PCKG_SOURCE["https://github.com/retroros/ev3dev-connman-config.git"]="ev3dev-bus
 PCKG_SOURCE["https://github.com/retroros/ev3dev-adduser-config.git"]="ev3dev-jessie"
 
 # Used to maintain package order as hashtable lookup alone will not install all packages in order
-RETROROS_PKGS=( "grx" "grx-widgets" "console-runner" "brickd" "brickrun"
-                "ev3devKit" "brickman" "ev3dev-base-files" "ev3dev-rules"
-                "ev3dev-tools" "ev3dev-bluez-config" "ev3dev-connman-config"
-                "ev3dev-adduser-config" )
+declare -a RETROROS_PKGS=( "grx" "grx-widgets" "console-runner" "brickd" "brickrun"
+                           "ev3devKit" "brickman" "ev3dev-base-files" "ev3dev-rules"
+                           "ev3dev-tools" "ev3dev-bluez-config" "ev3dev-connman-config"
+                           "ev3dev-adduser-config" )
 BUILDDIR="/build"
 mkdir -p "$BUILDDIR"
 rm -rf "$BUILDDIR"/* # Cleanup if we're running multiple times manually
