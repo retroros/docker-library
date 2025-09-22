@@ -16,6 +16,7 @@ EOF
 apt-get update --yes
 apt-get install --yes --no-install-recommends \
   cmake \
+  config-package-dev \
   debhelper \
 	git \
 	gir1.2-glib-2.0 \
@@ -63,6 +64,7 @@ declare -a RETROROS_PKGS=( "grx" "grx-widgets" "console-runner" "brickd" "brickr
                            "ev3devKit" "brickman" "ev3dev-base-files" "ev3dev-rules"
                            "ev3dev-tools" "ev3dev-bluez-config" "ev3dev-connman-config"
                            "ev3dev-adduser-config" )
+
 BUILDDIR="/build"
 mkdir -p "$BUILDDIR"
 rm -rf "$BUILDDIR"/* # Cleanup if we're running multiple times manually
