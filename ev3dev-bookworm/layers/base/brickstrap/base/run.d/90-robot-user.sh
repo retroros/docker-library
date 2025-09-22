@@ -8,4 +8,4 @@ echo "robot:maker" | chpasswd
 usermod -a -G sudo robot
 
 # automatically start console-runner on boot
-systemctl enable console-runner@tty5.service
+systemctl enable console-runner@tty5.service # TODO: This tty may or maynot exist?
